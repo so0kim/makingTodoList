@@ -1,0 +1,7 @@
+#todoList {
+    border: 1px solid black;
+}
+
+.complete {
+    text-decoration: line-through;
+}
