@@ -1,3 +1,8 @@
+const enrolling = new Panel.Enroll.Input({
+    target : document.getElementById('enrolled')
+});
+
+
 // 등록 버튼
 let enrollBtn = document.getElementById('enroll');
 
@@ -8,7 +13,7 @@ let input = document.getElementById('todoThings');
 let list = document.getElementById('todoList');
 
 // 등록버튼 클릭 시 이벤트 
-enrollBtn.addEventListener('click', enrollMission);
+// enrollBtn.addEventListener('click', enrollMission);
 
 // 등록버튼 클릭 시 생성할 이벤트 
 function enrollMission(){
@@ -45,3 +50,12 @@ function completeMission(){
 
     }
 };
+
+
+
+
+
+
+
+// const aaa = new Panel.Enroll.Input('hello');
+// console.log(aaa);
