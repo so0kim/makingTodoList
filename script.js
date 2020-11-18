@@ -1,11 +1,28 @@
+// body태그 가져오기 
+const starting = new Panel.Enroll.Group({
+    // target : document.getElementsByTagName('body')
+    // 질문1 : 
+    // body태그는 하나밖에 없는데.. HTML Collection으로 보내진다면 0번째꺼를 뽑아야하나요..?
+
+    target : document.getElementById('id')
+})
+
+
+
+/*
 const enrolling = new Panel.Enroll.Input({
     target : document.getElementById('enrolled')
 });
+*/
 
 /*const enrolled = new Panel.Enroll.Result({
     target : document.getElementById('todoList')
 });
 */
+
+
+
+/*
 
 // 등록 버튼
 let enrollBtn = document.getElementById('enroll');
@@ -56,7 +73,7 @@ function completeMission(){
 };
 
 
-
+*/
 
 
 

@@ -141,3 +141,55 @@ Panel.Enroll.Result = class {
     }
 }
 
+
+
+
+
+
+
+
+Panel.Enroll.Group = class {
+    constructor(group){
+        const option = group ? group : {};
+        this.target = option.target ? option.target : undefined;
+
+        // h1 태그 만들기(Todo List 만들기) 
+        this.h1Tag = document.createElement('h1');
+        this.h1Tag.textContent = 'Todo List 만들기'
+
+        // 등록 input과 버튼이 있는
+        // div#enrolled 만들기 
+        this.enrolledDiv = document.createElement('div');
+        this.enrolledDiv.className = 'enrolled';
+
+
+        // div#enrolled에 input과 등록버튼 추가 
+        const inputPanel = new Panel.Enroll.Input({
+            target : this.enrolledDiv
+        })
+
+
+
+
+
+        // h3 태그 만들기 (할 일 목록)
+        this.h3Tag = document.createElement('h3');
+        this.h3Tag.textContent = '할 일 목록'
+
+        // 등록될 목록과 체크박스가 있는 ul태그 만들기 
+        this.ulTag = document.createElement('ul');
+        this.ulTag.setAttribute('id', 'todoList');
+
+
+        if (this.target){
+            this.target.appendChild(this.h1Tag); // h1태그 추가 
+            this.target.appendChild(this.enrolledDiv); // div#enrolled 추가 
+
+
+            this.target.appendChild(this.h3Tag); // h3태그 추가 
+            this.target.appendChild(this.ulTag); // ol 태그 추가 
+        }
+
+
+    }
+}
