@@ -2,6 +2,10 @@ const enrolling = new Panel.Enroll.Input({
     target : document.getElementById('enrolled')
 });
 
+/*const enrolled = new Panel.Enroll.Result({
+    target : document.getElementById('todoList')
+});
+*/
 
 // 등록 버튼
 let enrollBtn = document.getElementById('enroll');

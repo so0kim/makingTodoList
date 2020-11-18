@@ -4,6 +4,7 @@
 
 Panel.Enroll.Input = class {
     constructor(todo){
+
         const option = todo ? todo : {};
         this.target = option.target ? option.target : undefined;
 
@@ -17,6 +18,7 @@ Panel.Enroll.Input = class {
 
         this.myDiv.appendChild(this.input)
         this.myDiv.appendChild(this.btn);
+
 
         if (this.target){
             this.target.appendChild(this.myDiv);
@@ -48,8 +50,19 @@ Panel.Enroll.Input = class {
 
     enrollMission(){
         console.log(this.input.value);
-        return this.input.value;
+        // return this.input.value;
+
+
+        // 이 값(this.input.value) 을 다른 클래스로 어떻게 보내죠..?
+        // 헐 된다 
+        const enrollingMission = new Panel.Enroll.Result({
+            whatTodo : this.input.value,
+            target : document.getElementById('todoList')
+        });
+
     }
+
+
 
 
 }
@@ -57,40 +70,74 @@ Panel.Enroll.Input = class {
 
 Panel.Enroll.Result = class {
 
-    constructor(todo){
+    constructor(todoContent){
+        const option = todoContent ? todoContent : {};
+        let whatTodo = option.whatTodo;
 
-        this.resultDiv = document.createElement('ol');
-        this.resultDiv.className = 'todoList';
+        this.target = option.target ? option.target : undefined;
 
-        this.todo = this.createTodoList();
+        // ol에 추가할 li 만들기 
+        this.myLi = this.createLiResult(whatTodo);
 
+
+        this.bindingTodo(this.myLi);
+        
+
+        // target(ol)에 li 넣어주기 
+        if (this.target){
+            this.target.appendChild(this.myLi);
+        }
+
+       
     }
 
-    createDivResult(){
-        this.createTodoList();
+    createLiResult(whatTodo){
+        // 여기서 ol에 넣을 li를 content와 checkbox를 묶어서 return해준다. 
 
-    }
 
-    createTodoList(){
+        // Panel.enroll.Input에서 입력된 value값을 받아와야하는데.. 
+        let inputContent = whatTodo; /* = 받은 value값 넣어주기 */ ;
+        
         let todoList = document.createElement('li');
-        let check = document.createElement('input');
-        check.type = "checkbox";
-        
-        let whatTodo = new Panel.Enroll.Result.enrollMission();
-        
-        todoList.appendChild(whatTodo);
-        todoList.appendChild(check);
+        let checkBtn = document.createElement('input');
+        // input의 타입을 checkbox로 바꾸기 
+        checkBtn.type = 'checkbox';
 
-        this.checkingTodoList();
-
+        // li에 해야할 일 내용(inputContent)를 넣어주기 
+        todoList.textContent = inputContent;
+        todoList.appendChild(checkBtn);
+        // this.bindingTodo(checkBtn);
+        
         return todoList;
+
+        
     }
 
 
-    checkingTodoList(){
-        // 이벤트 바인딩... 
+    bindingTodo(li){
+        // 3 이벤트 바인딩... 
+        // this 가 헷갈린다... 
+        // 버튼이랑 li content 랑 어케 묶지.. 
+
+        // check된 체크박스의 class name을 complete 으로 바꿔주기 
+        let btnList = li.querySelectorAll('input');
+        let btn = btnList[0];
+        btn.addEventListener('change', this.showMission);
+
+        /*if (btn.checked){
+            this.parentElement.className = "complete";
+        }  else {
+            this.parentElement.className = "incomplete";
+        } */
+
     }
 
-
-
+    showMission(){
+        if (this.checked){
+            this.parentElement.className = "complete";
+        } else {
+            this.parentElement.className = "incomplete";
+        } 
+    }
 }
+

@@ -1,6 +1,6 @@
 # To Do List 만들기 
 
-## Namespace Patter
+## Namespace Pattern
 
 
 
